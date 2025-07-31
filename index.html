@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Black Car Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000; /* Black background */
+            color: #F5F5F4; /* Light text for contrast */
+        }
+        .nav-link {
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover {
+            color: #A855F7; /* Accent: Purple 500 */
+            border-bottom-color: #A855F7;
+        }
+        .btn-primary {
+            background-color: #A855F7; /* Accent: Purple 500 */
+            color: #FFFFFF;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #9333ea; /* Purple 600 */
+            transform: translateY(-2px);
+        }
+        /* Input Field Styling for guaranteed dark text on light background */
+        .input-field {
+            /* Base Tailwind styles */
+            @apply shadow appearance-none rounded w-full py-3 px-4 leading-tight border border-gray-700;
+            /* Focus Tailwind styles */
+            @apply focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50;
+            /* Smooth transitions for visual effects */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+
+            /* Explicitly set text and background colors for high contrast */
+            color: #000000; /* Pure black text */
+            background-color: #FFFFFF; /* Pure white background */
+        }
+        .message-box {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            text-align: center;
+            color: #292524; /* Ensure message box text is dark */
+        }
+        .message-box button {
+            @apply mt-4 bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-full;
+        }
+        /* Custom styles for radio buttons to match theme */
+        .radio-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem; /* Equivalent to mb-3 */
+        }
+        .radio-option input[type="radio"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            display: inline-block;
+            width: 1.25rem; /* Equivalent to w-5 */
+            height: 1.25rem; /* Equivalent to h-5 */
+            border-radius: 50%;
+            border: 2px solid #a855f7; /* Purple 500 */
+            background-color: transparent;
+            margin-right: 0.5rem; /* Equivalent to mr-2 */
+            cursor: pointer;
+            position: relative;
+            outline: none;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+        .radio-option input[type="radio"]:checked {
+            background-color: #a855f7; /* Purple 500 */
+            border-color: #a855f7;
+        }
+        .radio-option input[type="radio"]:checked::before {
+            content: '';
+            display: block;
+            width: 0.625rem; /* Half of width/height */
+            height: 0.625rem; /* Half of width/height */
+            border-radius: 50%;
+            background-color: #fff; /* White dot inside */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .radio-option label {
+            cursor: pointer;
+            color: #F5F5F4; /* Light text for contrast */
+            font-weight: 500; /* Medium font weight */
+        }
+
+        /* Pulse Animation for "No Surge!" and other highlighted text */
+        @keyframes subtlePulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.02); } /* Slightly less opaque, slightly larger */
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .no-surge-highlight {
+            animation: subtlePulse 2.5s infinite ease-in-out; /* 2.5 seconds, infinite loop, smooth transition */
+        }
+    </style>
+</head>
+<body class="bg-black text-gray-100">
+
+    <header class="bg-gray-900 shadow-lg py-4 fixed w-full z-50">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-white">Elite Black Car Services</a>
+            <nav class="space-x-8">
+                <a href="#home" class="nav-link text-white">Home</a>
+                <a href="#services" class="nav-link text-white">Services</a>
+                <a href="#about" class="nav-link text-white">About Us</a>
+                <a href="#contact" class="nav-link text-white">Contact</a>
+                <a href="#book" class="btn-primary">Book Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="py-20 md:py-32 bg-gray-800 text-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-6xl font-bold text-white leading-tight">Your Journey, Elevated.</h2>
+                <p class="mt-6 text-lg max-w-3xl mx-auto text-gray-300">Experience unparalleled luxury and professional discretion with our<br>Black Car Services in Dallas and surrounding areas</p>
+                <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-purple-300">
+                    <strong class="no-surge-highlight text-xl md:text-2xl">No Surprises!</strong> <strong class="no-surge-highlight text-xl md:text-2xl">No Surge!</strong><br>
+                    <span class="text-base">Just guaranteed</span> <strong>Flat rates</strong> <span class="text-base">for your luxury travel with</span><br>
+                    Elite Black Car Services
+                </p>
+                <p class="mt-1 text-base max-w-3xl mx-auto text-purple-300">
+                    <strong class="no-surge-highlight text-xl md:text-2xl">Enjoy a consistent fare of $79</strong> + <span class="text-sm">toll</span><br>
+                    free from ridiculous inconsistent <strong class="no-surge-highlight text-xl md:text-2xl">Surge Pricing</strong>
+                </p>
+                <a href="#book" class="mt-8 inline-block btn-primary">Book Your Ride</a>
+                
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="max-w-full h-auto mx-auto rounded-lg shadow-lg overflow-hidden">
+                        <img src="http://googleusercontent.com/image_generation_content/3" alt="A sleek black GMC Yukon XL with a professional driver opening the door for a VIP person coming out in a high rise office building during the day in Dallas, TX" class="w-full h-auto">
+                    </div>
+                    <div class="max-w-full h-auto mx-auto rounded-lg shadow-lg overflow-hidden">
+                        <img src="http://googleusercontent.com/image_generation_content/2" alt="A wide shot of the interior of a spacious black SUV showing comfortable leather seats and ambient lighting with a corporate person enjoying the ride" class="w-full h-auto">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="py-20 md:py-32 bg-gray-900 text-white text-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-bold mb-12">Our Services</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+                        <i class="fas fa-plane text-purple-400 text-5xl mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">Airport Transfers</h3>
+                        <p class="text-gray-300">Stress-free pickups and drop-offs at DFW and Dallas Love Field (DAL). Flight tracking included.</p>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+                        <i class="fas fa-business-time text-purple-400 text-5xl mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">Hourly Charters</h3>
+                        <p class="text-gray-300">Dedicated chauffeur service for as long as you need, perfect for business or leisure.</p>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+                        <i class="fas fa-route text-purple-400 text-5xl mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">Point-to-Point</h3>
+                        <p class="text-gray-300">Efficient and comfortable transportation between any two locations in the Dallas area.</p>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+                        <i class="fas fa-calendar-alt text-purple-400 text-5xl mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">Special Events</h3>
+                        <p class="text-gray-300">Arrive in style at weddings, proms, concerts, sports events, and more.</p>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+                        <i class="fas fa-handshake text-purple-400 text-5xl mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">Corporate Travel</h3>
+                        <p class="text-gray-300">Reliable and professional service for executives and corporate clients.</p>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+                        <i class="fas fa-city text-purple-400 text-5xl mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">City Tours</h3>
+                        <p class="text-gray-300">Experience Dallas with a personalized tour in the comfort of a luxury vehicle.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 md:py-32 bg-gray-800 text-white">
+            <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="http://googleusercontent.com/image_generation_content/4" alt="Professional chauffeur standing by a luxury black SUV" class="rounded-lg shadow-xl">
+                </div>
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">About Elite Black Car Services</h2>
+                    <p class="text-lg text-gray-300 leading-relaxed mb-4">
+                        At Elite Black Car Services, we redefine luxury transportation in Dallas and surrounding areas. Our commitment is to provide an unparalleled travel experience, combining professionalism, comfort, and reliability.
+                    </p>
+                    <p class="text-lg text-gray-300 leading-relaxed">
+                        Our fleet consists of late-model, meticulously maintained luxury vehicles, and our chauffeurs are highly trained professionals dedicated to your safety, privacy, and satisfaction. We pride ourselves on punctuality, discretion, and a personalized approach to every ride. Your journey is our priority.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 md:py-32 bg-gray-900 text-white text-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-bold mb-8">Contact Us</h2>
+                <p class="mb-12 text-lg md:text-xl max-w-3xl mx-auto text-gray-300">Have questions or need a custom quote? Reach out to us anytime.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                    <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-purple-400 mb-4">Get in Touch</h3>
+                        <p class="mb-4 text-gray-300"><i class="fas fa-phone-alt text-purple-400 mr-3"></i> (214) 555-1234</p>
+                        <p class="mb-4 text-gray-300"><i class="fas fa-envelope text-purple-400 mr-3"></i> info@eliteblackcars.com</p>
+                        <p class="mb-4 text-gray-300"><i class="fas fa-map-marker-alt text-purple-400 mr-3"></i> Dallas, TX, USA</p>
+                        <div class="mt-6 space-x-4">
+                            <a href="#" class="text-gray-300 hover:text-purple-400"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-gray-300 hover:text-purple-400"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-300 hover:text-purple-400"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-purple-400 mb-4">Send Us a Message</h3>
+                        <form id="contactForm">
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-300 text-sm font-bold mb-2 sr-only">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Your Name" class="input-field" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email_contact" class="block text-gray-300 text-sm font-bold mb-2 sr-only">Email</label>
+                                <input type="email" id="email_contact" name="email" placeholder="Your Email" class="input-field" required>
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-300 text-sm font-bold mb-2 sr-only">Message</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Your Message" class="input-field" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary w-full">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="book" class="py-20 md:py-32 bg-gray-800 text-white text-center">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Book Your Elite Ride</h2>
+                <p class="mb-8 text-lg md:text-xl max-w-3xl mx-auto text-gray-300">Secure your luxury transportation with ease. Fill out the form below to book your black car service.</p>
+                
+                <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-purple-300 mb-8"><strong class="no-surge-highlight text-xl md:text-2xl">No Surprises!</strong> <strong class="no-surge-highlight text-xl md:text-2xl">No Surge!</strong> <span class="text-base">Just guaranteed</span> <strong>Flat rates of $79</strong> + <span class="text-sm">toll</span></p>
+
+                <form id="bookingForm" class="max-w-xl mx-auto bg-gray-900 p-8 rounded-lg shadow-lg">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="md:col-span-2">
+                            <label for="serviceType" class="block text-left text-gray-300 text-sm font-bold mb-2">Service Type</label>
+                            <select id="serviceType" name="serviceType" class="input-field text-gray-900 bg-white" required>
+                                <option value="">Select Service</option>
+                                <option value="airport">DFW Airport Transfer ($79 + toll)</option>
+                                <option value="hourly">Hourly Service</option>
+                                <option value="point_to_point">Point-to-Point Service</option>
+                                <option value="special_event">Special Event / Prom / Wedding</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="pickupLocation" class="block text-left text-gray-300 text-sm font-bold mb-2">Pickup Location</label>
+                            <input type="text" id="pickupLocation" name="pickupLocation" placeholder="e.g., DFW Terminal A / 123 Main St" class="input-field text-gray-900 bg-white" required>
+                        </div>
+                        <div>
+                            <label for="destination" class="block text-left text-gray-300 text-sm font-bold mb-2">Destination</label>
+                            <input type="text" id="destination" name="destination" placeholder="e.g., 456 Oak Ave / DFW Terminal C" class="input-field text-gray-900 bg-white" required>
+                        </div>
+                        <div>
+                            <label for="pickupDate" class="block text-left text-gray-300 text-sm font-bold mb-2">Pickup Date</label>
+                            <input type="date" id="pickupDate" name="pickupDate" class="input-field text-gray-900 bg-white" required>
+                        </div>
+                        <div>
+                            <label for="pickupTime" class="block text-left text-gray-300 text-sm font-bold mb-2">Pickup Time</label>
+                            <input type="time" id="pickupTime" name="pickupTime" class="input-field text-gray-900 bg-white" required>
+                        </div>
+                        
+                        <div class="md:col-span-2">
+                            <label for="fullName" class="block text-left text-gray-300 text-sm font-bold mb-2">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" placeholder="Your Full Name" class="input-field text-gray-900 bg-white" required>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="email" class="block text-left text-gray-300 text-sm font-bold mb-2">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your@example.com" class="input-field text-gray-900 bg-white" required>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="phone" class="block text-left text-gray-300 text-sm font-bold mb-2">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890" class="input-field text-gray-900 bg-white" required>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="flightNumber" class="block text-left text-gray-300 text-sm font-bold mb-2">Flight Number (for Airport Service)</label>
+                            <input type="text" id="flightNumber" name="flightNumber" placeholder="e.g., AA123 (Optional)" class="input-field text-gray-900 bg-white">
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-left text-gray-300 text-sm font-bold mb-2">Number of Passengers</label>
+                            <div class="flex flex-wrap -mx-2">
+                                <div class="w-1/2 md:w-1/4 px-2 mb-2">
+                                    <div class="radio-option">
+                                        <input type="radio" id="passengers1" name="numPassengers" value="1" required>
+                                        <label for="passengers1">1</label>
+                                    </div>
+                                </div>
+                                <div class="w-1/2 md:w-1/4 px-2 mb-2">
+                                    <div class="radio-option">
+                                        <input type="radio" id="passengers2" name="numPassengers" value="2">
+                                        <label for="passengers2">2</label>
+                                    </div>
+                                </div>
+                                <div class="w-1/2 md:w-1/4 px-2 mb-2">
+                                    <div class="radio-option">
+                                        <input type="radio" id="passengers3" name="numPassengers" value="3">
+                                        <label for="passengers3">3</label>
+                                    </div>
+                                </div>
+                                <div class="w-1/2 md:w-1/4 px-2 mb-2">
+                                    <div class="radio-option">
+                                        <input type="radio" id="passengers4" name="numPassengers" value="4">
+                                        <label for="passengers4">4+</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-left text-gray-300 text-sm font-bold mb-2">Number of Luggage (Standard)</label>
+                            <div class="flex flex-wrap -mx-2">
+                                <div class="w-1/2 md:w-1/4 px-2 mb-2">
+                                    <div class="radio-option">
+                                        <input type="radio" id="luggage0" name="numLuggage" value="0" required>
+                                        <label for="luggage0">0</label>
+                                    </div>
+                                </div>
+                                <div class="w-1/2 md:w-1/4 px-2 mb-2">
+                                    <div class="radio-option">
+                                        <input type="radio" id="luggage1" name="numLuggage" value="1">
+                                        <label for="luggage1">1</label>
+                                    </div>
+                                </div>
+                                <div class="w-1/2 md:w-1/4 px-2 mb-2">
+                                    <div class="radio-option">
+                                        <input type="radio" id="luggage2" name="numLuggage" value="2">
+                                        <label for="luggage2">2</label>
+                                    </div>
+                                </div>
+                                <div class="w-1/2 md:w-1/4 px-2 mb-2">
+                                    <div class="radio-option">
+                                        <input type="radio" id="luggage3" name="numLuggage" value="3">
+                                        <label for="luggage3">3+</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="md:col-span-2">
+                            <label for="notes" class="block text-left text-gray-300 text-sm font-bold mb-2">Additional Notes / Special Requests</label>
+                            <textarea id="notes" name="notes" rows="4" placeholder="e.g., Child seat needed, multiple stops" class="input-field"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="mt-8 btn-primary w-full">Confirm Booking</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 py-8 text-center text-gray-400 text-sm">
+        <div class="container mx-auto px-6">
+            <p>&copy; 2025 Elite Black Car Services. All rights reserved.</p>
+            <div class="mt-4 space-x-4">
+                <a href="#" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-white"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="messageBox" class="message-box">
+        <p id="messageText" class="text-gray-800"></p>
+        <button id="closeMessageBox">OK</button>
+    </div>
+
+    <script>
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Basic validation example (you'd expand this)
+            const serviceType = document.getElementById('serviceType').value;
+            const pickupLocation = document.getElementById('pickupLocation').value;
+            const destination = document.getElementById('destination').value;
+            const pickupDate = document.getElementById('pickupDate').value;
+            const pickupTime = document.getElementById('pickupTime').value;
+            const numPassengers = document.querySelector('input[name="numPassengers"]:checked'); // Get checked value
+            const numLuggage = document.querySelector('input[name="numLuggage"]:checked'); // Get checked value
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            // Updated validation to include new radio buttons
+            if (!serviceType || !pickupLocation || !destination || !pickupDate || !pickupTime || !numPassengers || !numLuggage || !fullName || !email || !phone) {
+                showMessage('Please fill in all required fields, including passenger and luggage counts.');
+                return;
+            }
+
+            // In a real application, you'd send this data to a server
+            // For this example, we'll just show a success message
+            showMessage('Booking submitted successfully! We will contact you shortly to confirm details.');
+            document.getElementById('bookingForm').reset(); // Clear the form
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email_contact').value; // Use unique ID for contact form email
+            const message = document.getElementById('message').value;
+
+            if (!name || !email || !message) {
+                showMessage('Please fill in all contact form fields.');
+                return;
+            }
+            
+            showMessage('Your message has been sent! We will get back to you soon.');
+            document.getElementById('contactForm').reset(); // Clear the form
+        });
+
+
+        function showMessage(msg) {
+            const messageBox = document.getElementById('messageBox');
+            const messageText = document.getElementById('messageText');
+            messageText.textContent = msg;
+            messageBox.style.display = 'block';
+        }
+
+        document.getElementById('closeMessageBox').addEventListener('click', function() {
+            document.getElementById('messageBox').style.display = 'none';
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) { // Only handle internal links
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - document.querySelector('header').offsetHeight, // Adjust for fixed header
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
